@@ -30,25 +30,24 @@
             top: 10%;
         }
 
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  padding: 0 1em;
-}
+        .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+          padding: 0 1em;
+        }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
 
-label {
-  font-weight: bold;
-}
+        label {
+          font-weight: bold;
+        }
 `);
 
   var anchors = document.querySelectorAll("table pre font a");
@@ -74,7 +73,6 @@ label {
     modalParent.style.display = "none";
   }
 
-
   var pfafurl = "https://pfaf.org/user/Plant.aspx?LatinName=Arundinaria+gigantea";
 
   for (var i = 0; i < anchors.length; i++) {
@@ -97,8 +95,6 @@ label {
       var clickedLatinName = this.getAttribute('data-latinname');
       clickedLatinName = clickedLatinName.replace(/\+/g, ' ');
 
-
-
       GM_xmlhttpRequest({
         method: "GET",
         url: clickedurl,
@@ -117,8 +113,6 @@ label {
             putNewItemFromPfaf(docPfaf, 'ContentPlaceHolder1_txtEdrating', 'Comestibilité');
             putNewItemFromPfaf(docPfaf, 'ContentPlaceHolder1_txtOtherUseRating', 'Autres usages');
             putNewItemFromPfaf(docPfaf, 'ContentPlaceHolder1_txtMedRating', 'Usage santé');
-            // Comment faire ? // putNewItemFromPfaf (docPfaf, 'ContentPlaceHolder1_tblIcons', 'Conditions');
-
 
             putNewTableFromPfaf(docPfaf, 'ContentPlaceHolder1_tblIcons', 'Entretien');
             addLink("Source", clickedurl);
@@ -128,7 +122,6 @@ label {
               return match.toLowerCase();
             });
             addLink("Wikipedia", "https://fr.wikipedia.org/wiki/" + clickedLatinName);
-            // TODO mettre les + en espaces et mettre en minuscules
           }
         }
       });
@@ -157,13 +150,12 @@ label {
     var docCommonName = docPfaf.getElementById(idInPfaf).innerText;
     var plantData = document.createElement("p");
     if (label != undefined) {
-      plantData.innerHTML = '<label>' + label + '</label>' + ' ' + docCommonName;
+      plantData.innerHTML = '<label>' + label + '</label> ' + docCommonName;
     } else {
       plantData.innerHTML = docCommonName;
     }
     modalContent.appendChild(plantData);
   }
-
 
   function putNewItem(item) {
     var plantData = document.createElement("h3");
